@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace CareerPassportDemoTests
 {
@@ -10,12 +9,12 @@ namespace CareerPassportDemoTests
 
         public SimpleMathsOperationsTests()
         {
-            _simpleMathsOperations = new ();
+            _simpleMathsOperations = new();
         }
 
         [TestMethod()]
         public void AddNumbersTest()
-        { 
+        {
             //Act
             var result = _simpleMathsOperations.AddNumbers(8.7, 5.4);
 

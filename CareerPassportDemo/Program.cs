@@ -1,7 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
+
 var printerService = new PrinterService();
 var mathsOperator = new SimpleMathsOperations();
 var classRegister = new ClassRegister();
+var multiples = new Multiples();
+
 printerService.Print("Hello, World!");
 
 var numA = 7.5;
@@ -19,6 +22,11 @@ var students = classRegister.GetStudents();
 printerService.Print($"There are {students.Count()} registered in the class.\nHere are their names:\n");
 students.ToList().ForEach(x => printerService.Print($"{x}\n"));
 
+var sumOfMultiplesOfThreeUpToHundred = multiples.SumOfMultiples(3, 100);
+printerService.Print($"Sum Of Multiples Of Three Up To Hundred is {sumOfMultiplesOfThreeUpToHundred}\n");
+var sumOfMultiplesOfThreeAndFiveUpToHundred = multiples.SumOfMultiples(new int[] { 3, 5 }, 100);
+printerService.Print($"Sum Of Multiples Of Three and Five Up To Hundred is {sumOfMultiplesOfThreeAndFiveUpToHundred}\n");
+
 public class PrinterService
 {
     public void Print(object word)
@@ -30,9 +38,13 @@ public class PrinterService
 public class SimpleMathsOperations
 {
     public double AddNumbers(double x, double y) => x + y;
+
     public double SubtractNumbers(double x, double y) => x - y;
+
     public double MultiplyNumbers(double x, double y) => x * y;
+
     public double DivideNumbers(double x, double y) => x / y;
+
     public double SquareNumber(double x) => x * x;
 }
 
@@ -48,6 +60,16 @@ public class ClassRegister
     }
 
     public void AddStudent(string student) => _students.Add(student);
+
     public void AddStudents(IEnumerable<string> students) => _students.AddRange(students);
+
     public IEnumerable<string> GetStudents() => _students;
+}
+
+//-Simple Maths Operations => Sum of Multiple lvl 1 and 2
+public class Multiples
+{
+    public int SumOfMultiples(int n, int max) => Enumerable.Range(1, max - 1).Where(p => p % n == 0).Sum();
+
+    public int SumOfMultiples(IEnumerable<int> multiples, int max) => Enumerable.Range(1, max - 1).Where(p => multiples.Any(q => q > 0 && p % q == 0)).Sum();
 }

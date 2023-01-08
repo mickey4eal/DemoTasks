@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-namespace Tests
+
+namespace CareerPassportDemoTests
 {
     [TestClass()]
     public class ClassRegisterTests
@@ -28,7 +29,7 @@ namespace Tests
             _classRegister = new();
 
             //Act
-            _classRegister.AddStudents(new string[] { "Student A" , "Student B" , "Student C" });
+            _classRegister.AddStudents(new string[] { "Student A", "Student B", "Student C" });
             var result = _classRegister.GetStudents();
 
             //Assert

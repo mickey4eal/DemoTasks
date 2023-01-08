@@ -9,7 +9,7 @@ namespace CareerPassportDemoTests
 
         public PrinterServiceTests()
         {
-            _helloWorld = new ();
+            _helloWorld = new();
         }
 
         [TestMethod()]
