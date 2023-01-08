@@ -1,6 +1,4 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using System.Security.Claims;
-
 var printerService = new PrinterService();
 var mathsOperator = new SimpleMathsOperations();
 var classRegister = new ClassRegister();
@@ -8,7 +6,6 @@ printerService.Print("Hello, World!");
 
 var numA = 7.5;
 var numB = 9.0;
-
 printerService.Print($"Addition of {numA} and {numB} is {mathsOperator.AddNumbers(numA, numB)}\n");
 printerService.Print($"Subtraction of {numA} and {numB} is {mathsOperator.SubtractNumbers(numA, numB)}\n");
 printerService.Print($"Multiplication of {numA} and {numB} is {mathsOperator.MultiplyNumbers(numA, numB)} \n");
