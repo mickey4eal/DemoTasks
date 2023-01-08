@@ -1,4 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Principal;
 
 var printerService = new PrinterService();
 var mathsOperator = new SimpleMathsOperations();
@@ -26,6 +30,10 @@ var sumOfMultiplesOfThreeUpToHundred = multiples.SumOfMultiples(3, 100);
 printerService.Print($"Sum Of Multiples Of Three Up To Hundred is {sumOfMultiplesOfThreeUpToHundred}\n");
 var sumOfMultiplesOfThreeAndFiveUpToHundred = multiples.SumOfMultiples(new int[] { 3, 5 }, 100);
 printerService.Print($"Sum Of Multiples Of Three and Five Up To Hundred is {sumOfMultiplesOfThreeAndFiveUpToHundred}\n");
+
+var accumulateResult = Accumulate.AccumulateOperations(new int[] { 1, 2, 3, 4, 5 }, x => x * x);
+printerService.Print($"Accumulate Results\n");
+accumulateResult.ToList().ForEach(x => printerService.Print($"{x}\n"));
 
 public class PrinterService
 {
@@ -73,3 +81,33 @@ public class Multiples
 
     public int SumOfMultiples(IEnumerable<int> multiples, int max) => Enumerable.Range(1, max - 1).Where(p => multiples.Any(q => q > 0 && p % q == 0)).Sum();
 }
+
+//Accumulate
+public static class Accumulate
+{
+    public static IEnumerable<int> AccumulateOperations(IEnumerable<int> collection, Func<int, int> func) => collection.Select(value => func(value));
+}
+
+//Level 3
+//- Bank / ATM Kata(Task)
+//> Given a client makes a deposit(s) / withdrawal(s)
+//> Print their bank statement
+
+//Level 4/5
+//- Level Bank Account Kata
+//> Create Account
+//> Deposit/ Withdraw
+//> Transfer funds
+//> Account Statement
+//> Statement Printing
+//> Statement Filters
+
+//Level 5/6
+//- Banking System
+//> Create Bank(s)
+//> Create Account in Bank(s)
+//> Deposit / Withdraw from Account in Bank(s)
+//> Transfer funds between Account in Bank(s)
+//> Account Statement
+//> Statement Printing
+//> Statement Filters
