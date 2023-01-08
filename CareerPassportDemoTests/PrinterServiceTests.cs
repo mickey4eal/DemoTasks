@@ -1,12 +1,11 @@
-﻿using Microsoft.VisualStudio.TestPlatform.Utilities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CareerPassportDemoTests
 {
     [TestClass()]
     public class PrinterServiceTests
     {
-        private PrinterService _helloWorld;
+        private readonly PrinterService _helloWorld;
 
         public PrinterServiceTests()
         {
@@ -16,8 +15,10 @@ namespace CareerPassportDemoTests
         [TestMethod()]
         public void PrintWordTest()
         {
+            //Arrange
             var currentConsoleOut = Console.Out;
 
+            //Act and Assert
             using (var consoleOutput = new ConsoleOutput())
             {
                 _helloWorld.Print("Hello, World!");
