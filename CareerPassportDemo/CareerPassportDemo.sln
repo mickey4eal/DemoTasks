@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CareerPassportDemo", "CareerPassportDemo.csproj", "{FEC3A8CF-EDF2-4F05-9E1E-0735748394C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CareerPassportDemoTests", "..\CareerPassportDemoTests\CareerPassportDemoTests.csproj", "{B94C80BE-1721-4726-9BE7-CC6EECA7FCF5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FEC3A8CF-EDF2-4F05-9E1E-0735748394C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEC3A8CF-EDF2-4F05-9E1E-0735748394C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEC3A8CF-EDF2-4F05-9E1E-0735748394C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEC3A8CF-EDF2-4F05-9E1E-0735748394C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B94C80BE-1721-4726-9BE7-CC6EECA7FCF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B94C80BE-1721-4726-9BE7-CC6EECA7FCF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B94C80BE-1721-4726-9BE7-CC6EECA7FCF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B94C80BE-1721-4726-9BE7-CC6EECA7FCF5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9100F60F-0106-4CAC-B21D-16C6774BECE3}
+	EndGlobalSection
+EndGlobal
