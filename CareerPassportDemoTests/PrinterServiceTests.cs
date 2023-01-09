@@ -5,11 +5,11 @@ namespace CareerPassportDemoTests
     [TestClass()]
     public class PrinterServiceTests
     {
-        private readonly PrinterService _helloWorld;
+        private readonly PrinterService _printer;
 
         public PrinterServiceTests()
         {
-            _helloWorld = new();
+            _printer = new();
         }
 
         [TestMethod()]
@@ -21,7 +21,7 @@ namespace CareerPassportDemoTests
             //Act and Assert
             using (var consoleOutput = new ConsoleOutput())
             {
-                _helloWorld.Print("Hello, World!");
+                _printer.Print("Hello, World!");
 
                 Assert.AreEqual("Hello, World!\r\n", consoleOutput.GetOuput());
             }

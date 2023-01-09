@@ -1,13 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Principal;
 
 var printerService = new PrinterService();
 var mathsOperator = new SimpleMathsOperations();
 var classRegister = new ClassRegister();
 var multiples = new Multiples();
+var atm = new ATM();
 
 printerService.Print("Hello, World!");
 
@@ -31,9 +28,14 @@ printerService.Print($"Sum Of Multiples Of Three Up To Hundred is {sumOfMultiple
 var sumOfMultiplesOfThreeAndFiveUpToHundred = multiples.SumOfMultiples(new int[] { 3, 5 }, 100);
 printerService.Print($"Sum Of Multiples Of Three and Five Up To Hundred is {sumOfMultiplesOfThreeAndFiveUpToHundred}\n");
 
-var accumulateResult = Accumulate.AccumulateOperations(new int[] { 1, 2, 3, 4, 5 }, x => x * x);
+var accumulateResult = new Accumulate().AccumulateOperations(new int[] { 1, 2, 3, 4, 5 }, x => x * x);
 printerService.Print($"Accumulate Results\n");
 accumulateResult.ToList().ForEach(x => printerService.Print($"{x}\n"));
+
+atm.Deposit(DateTime.UtcNow, 800);
+atm.Withdraw(DateTime.UtcNow, 100);
+atm.Withdraw(DateTime.UtcNow, 150);
+atm.ShowBankStatement();
 
 public class PrinterService
 {
@@ -83,15 +85,65 @@ public class Multiples
 }
 
 //Accumulate
-public static class Accumulate
+public class Accumulate
 {
-    public static IEnumerable<int> AccumulateOperations(IEnumerable<int> collection, Func<int, int> func) => collection.Select(value => func(value));
+    public IEnumerable<int> AccumulateOperations(IEnumerable<int> collection, Func<int, int> func) => collection.Select(value => func(value));
 }
 
 //Level 3
 //- Bank / ATM Kata(Task)
 //> Given a client makes a deposit(s) / withdrawal(s)
 //> Print their bank statement
+
+public class ATM
+{
+    private readonly List<string> _statement;
+    private double _balance;
+    private const string header = "Date  |   Amount  |   Balance ";
+
+    public ATM()
+    {
+        _statement = new List<string>() { header };
+        _balance = 0;
+    }
+
+    public IEnumerable<string> AccountStatement { get => _statement; }
+    public double Balance { get => _balance; }
+
+    public void Deposit(DateTime dateTime, double amount)
+    {
+        if (amount > 0)
+        {
+            _balance += amount;
+            AddTransaction(dateTime, amount);
+        }
+        else
+        {
+            throw new ArgumentException("Invalid Amount");
+        }
+    }
+
+    public void Withdraw(DateTime dateTime, double amount)
+    {
+        if ((_balance - amount) >= 0)
+        {
+            _balance -= amount;
+            AddTransaction(dateTime, amount);
+        }
+        else
+        {
+            throw new ArgumentException("Insufficient Funds in Account.");
+        }
+    }
+
+    public void AddTransaction(DateTime dateTime, double amount) => _statement.Add($"{dateTime}  |   {amount}  |   {Balance} ");
+
+    public void ShowBankStatement()
+    {
+        var printer = new PrinterService();
+        AccountStatement.ToList().ForEach(x => printer.Print($"{x}"));
+    }
+}
 
 //Level 4/5
 //- Level Bank Account Kata
