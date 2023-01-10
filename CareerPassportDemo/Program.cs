@@ -1,10 +1,12 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using CareerPassportDemo;
+
 var printerService = new PrinterService();
 var mathsOperator = new SimpleMathsOperations();
 var classRegister = new ClassRegister();
 var multiples = new Multiples();
-var atm = new ATM();
+var atm = new Account();
 
 printerService.Print("Hello, World!");
 
@@ -95,54 +97,8 @@ public class Accumulate
 //> Given a client makes a deposit(s) / withdrawal(s)
 //> Print their bank statement
 
-public class ATM
+public class Account : AccountBase
 {
-    private readonly List<string> _statement;
-    private double _balance;
-    private const string header = "Date  |   Amount  |   Balance ";
-
-    public ATM()
-    {
-        _statement = new List<string>() { header };
-        _balance = 0;
-    }
-
-    public IEnumerable<string> AccountStatement { get => _statement; }
-    public double Balance { get => _balance; }
-
-    public void Deposit(DateTime dateTime, double amount)
-    {
-        if (amount > 0)
-        {
-            _balance += amount;
-            AddTransaction(dateTime, amount);
-        }
-        else
-        {
-            throw new ArgumentException("Invalid Amount");
-        }
-    }
-
-    public void Withdraw(DateTime dateTime, double amount)
-    {
-        if ((_balance - amount) >= 0)
-        {
-            _balance -= amount;
-            AddTransaction(dateTime, amount);
-        }
-        else
-        {
-            throw new ArgumentException("Insufficient Funds in Account.");
-        }
-    }
-
-    public void AddTransaction(DateTime dateTime, double amount) => _statement.Add($"{dateTime}  |   {amount}  |   {Balance} ");
-
-    public void ShowBankStatement()
-    {
-        var printer = new PrinterService();
-        AccountStatement.ToList().ForEach(x => printer.Print($"{x}"));
-    }
 }
 
 //Level 4/5
@@ -153,6 +109,11 @@ public class ATM
 //> Account Statement
 //> Statement Printing
 //> Statement Filters
+
+public class Bank : AccountBase
+{
+    
+}
 
 //Level 5/6
 //- Banking System

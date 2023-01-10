@@ -6,7 +6,7 @@ namespace CareerPassportDemoTests
     [TestClass()]
     public class ATMTests
     {
-        private ATM? _atm;
+        private Account? _atm;
         private const string header = "Date  |   Amount  |   Balance ";
 
         [TestMethod()]
