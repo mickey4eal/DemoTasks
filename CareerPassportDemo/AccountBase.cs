@@ -43,7 +43,7 @@ public class AccountBase
         if (CanWithdraw(amount))
         {
             _balance -= amount;
-            AddTransaction(dateTime, amount);
+            AddTransaction(dateTime, -amount);
         }
         else
         {
