@@ -11,9 +11,11 @@ namespace CareerPassportDemo
             _bankUsers = new List<User>();
         }
 
+        public List<User> BankUsers { get => _bankUsers; }
+
         public void CreateUserAccount(User user)
         {
-            if(UserIsValid(user))
+            if (UserIsValid(user))
             {
                 _bankUsers.Add(user);
             }
@@ -25,11 +27,15 @@ namespace CareerPassportDemo
 
         private bool UserIsValid(User user)
         {
-            return true;
+            return !string.IsNullOrEmpty(user.FirstName)
+                && !string.IsNullOrEmpty(user.LastName)
+                && !string.IsNullOrEmpty(user.AccountNumber)
+                && user.DateOfBirth.Date <= DateTime.Today.Date.AddYears(-18)//ToDO: Check this line
+                && user.Account != null;
         }
 
         public void TransferFunds(
-            string recipientSortCode, 
+            string recipientSortCode,
             string recipientAccountNumber,
             string sendersSortCode,
             string sendersAccountNumber,
@@ -44,7 +50,7 @@ namespace CareerPassportDemo
             if (recipient.Account.CanWithdraw(amount))
             {
                 recipient.Account.Withdraw(DateTime.UtcNow, amount);
-                sender.Account.Deposit(DateTime.UtcNow, amount);//To Do: Add details of sender (i.e. Full Name) to Statement 
+                sender.Account.Deposit(DateTime.UtcNow, amount);//To Do: Add details of sender (i.e. Full Name) to Statement
             }
         }
 

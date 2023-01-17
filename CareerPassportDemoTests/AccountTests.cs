@@ -1,10 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Reflection;
-
-namespace CareerPassportDemoTests
+﻿namespace CareerPassportDemoTests
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass()]
-    public class ATMTests
+    public class AccountTests
     {
         private Account? _atm;
         private const string header = "Date  |   Amount  |   Balance ";
@@ -74,7 +73,7 @@ namespace CareerPassportDemoTests
             {
                 _atm.ShowBankStatement();
 
-                Assert.AreEqual(header+"\r\n", consoleOutput.GetOuput());
+                Assert.AreEqual(header + "\r\n", consoleOutput.GetOuput());
             }
 
             Assert.AreEqual(currentConsoleOut, Console.Out);
@@ -97,9 +96,9 @@ namespace CareerPassportDemoTests
             using (var consoleOutput = new ConsoleOutput())
             {
                 _atm.ShowBankStatement();
-                var expected = @"Date  |   Amount  |   Balance 
-                01/06/2023 07:47:00  |   800  |   800 
-                01/06/2023 07:47:00  |   100  |   700 
+                var expected = @"Date  |   Amount  |   Balance
+                01/06/2023 07:47:00  |   800  |   800
+                01/06/2023 07:47:00  |   100  |   700
                 01/06/2023 07:47:00  |   150  |   550 ";
                 expected = expected.Replace("\n", string.Empty).Replace("\r", string.Empty).Replace(" ", string.Empty);
                 var cleanOutput = consoleOutput.GetOuput().Replace("\n", string.Empty).Replace("\r", string.Empty).Replace(" ", string.Empty);

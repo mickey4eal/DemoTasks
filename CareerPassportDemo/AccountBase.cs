@@ -5,7 +5,7 @@ public class AccountBase
     private const string header = "Date  |   Amount  |   Balance ";
     private readonly List<string> _statement;
     private double _balance;
-    private double _accountNumber;
+    private string _accountNumber = string.Empty;
 
     public AccountBase()
     {
@@ -15,7 +15,7 @@ public class AccountBase
 
     public IEnumerable<string> AccountStatement { get => _statement; }
     public double Balance { get => _balance; }
-    public double AccountNumber { get => _accountNumber; set => _accountNumber = value; }
+    public string AccountNumber { get => _accountNumber; set => _accountNumber = value; }
 
     public void AddTransaction(DateTime dateTime, double amount) => _statement.Add($"{dateTime}  |   {amount}  |   {Balance} ");
 

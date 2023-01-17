@@ -110,9 +110,8 @@ public class Account : AccountBase
 //> Statement Printing
 //> Statement Filters
 
-public class Bank : AccountBase
+public class Bank : AbstractBank
 {
-    
 }
 
 //Level 5/6

@@ -2,19 +2,10 @@
 {
     public class User
     {
-        public User(string firstName, string lastName, DateTime dateOfBirth, string sortCode, string accountNumber, Account account)
-        {
-            FirstName = firstName;
-            LastName = lastName;
-            DateOfBirth = dateOfBirth;
-            SortCode = sortCode;
-            AccountNumber = accountNumber;
-            Account = account ?? throw new ArgumentNullException(nameof(account));
-        }
-
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
+
         //public string Password { get; set; }
         //public string Email { get; set; }
         //public string Address { get; set; }
@@ -28,11 +19,14 @@
         //public bool PasswordConfirmed { get; set; }
         //public bool PhoneConfirmed { get; set; }
         public string SortCode { get; set; }
+
         public string AccountNumber { get; set; }
         public Account Account { get; set; }
+
+        public AccountType AccountType { get; set; }
     }
 
-    enum AccountType
+    public enum AccountType
     {
         CurrentAccount,
         SavingsAccount,
