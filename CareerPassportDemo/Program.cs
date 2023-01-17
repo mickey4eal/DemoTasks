@@ -1,12 +1,14 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using CareerPassportDemo;
+using CareerPassportDemo.Helpers;
 
 var printerService = new PrinterService();
 var mathsOperator = new SimpleMathsOperations();
 var classRegister = new ClassRegister();
 var multiples = new Multiples();
-var atm = new Account();
+var acct = new Account();
+var bank = new Bank();
 
 printerService.Print("Hello, World!");
 
@@ -34,10 +36,34 @@ var accumulateResult = new Accumulate().AccumulateOperations(new int[] { 1, 2, 3
 printerService.Print($"Accumulate Results\n");
 accumulateResult.ToList().ForEach(x => printerService.Print($"{x}\n"));
 
-atm.Deposit(DateTime.UtcNow, 800);
-atm.Withdraw(DateTime.UtcNow, 100);
-atm.Withdraw(DateTime.UtcNow, 150);
-atm.ShowBankStatement();
+acct.Deposit(DateTime.UtcNow, 800);
+acct.Withdraw(DateTime.UtcNow, 100);
+acct.Withdraw(DateTime.UtcNow, 150);
+acct.ShowBankStatement();
+
+var acctNumberA = "1284393293";
+var sortCodeA = "12-23-34";
+var sortCodeB = "12-23-35";
+var acctNumberB = "1284393295";
+var userA = AccountHelper.GenerateNewUser("Joe", "Gee", DateTime.Today.AddYears(-19), acctNumberA, sortCodeA, AccountHelper.GenerateNewAccount(acctNumberA), AccountType.CurrentAccount);
+var userB = AccountHelper.GenerateNewUser("Zoe", "Zee", DateTime.Today.AddYears(-25), acctNumberB, sortCodeB, AccountHelper.GenerateNewAccount(acctNumberB), AccountType.CurrentAccount);
+bank.CreateUserAccount(userA);
+bank.CreateUserAccount(userB);
+bank.BankUsers.First().Account.Deposit(DateTime.UtcNow, 5000);
+bank.BankUsers.First().Account.Withdraw(DateTime.UtcNow, 2000);
+bank.BankUsers.First().Account.Deposit(DateTime.UtcNow, 6000);
+bank.BankUsers.First().Account.Withdraw(DateTime.UtcNow, 2500);
+bank.BankUsers.First().Account.Deposit(DateTime.UtcNow, 2934);
+bank.BankUsers.Last().Account.Deposit(DateTime.UtcNow, 5000);
+bank.BankUsers.Last().Account.Withdraw(DateTime.UtcNow, 2000);
+bank.BankUsers.Last().Account.Deposit(DateTime.UtcNow, 6000);
+bank.BankUsers.Last().Account.Withdraw(DateTime.UtcNow, 2500);
+bank.BankUsers.Last().Account.Deposit(DateTime.UtcNow, 2934);
+bank.TransferFunds(sortCodeA, acctNumberA, sortCodeB, acctNumberB, 1000);
+printerService.Print("Account A");
+bank.BankUsers.First().Account.ShowBankStatement();
+printerService.Print("Account B");
+bank.BankUsers.Last().Account.ShowBankStatement();
 
 public class PrinterService
 {
@@ -123,3 +149,8 @@ public class Bank : AbstractBank
 //> Account Statement
 //> Statement Printing
 //> Statement Filters
+
+public class BankingGroup
+{
+    //Is this required
+}

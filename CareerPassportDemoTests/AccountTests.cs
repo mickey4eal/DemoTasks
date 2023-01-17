@@ -98,8 +98,8 @@
                 _atm.ShowBankStatement();
                 var expected = @"Date  |   Amount  |   Balance
                 01/06/2023 07:47:00  |   800  |   800
-                01/06/2023 07:47:00  |   100  |   700
-                01/06/2023 07:47:00  |   150  |   550 ";
+                01/06/2023 07:47:00  |   -100  |   700
+                01/06/2023 07:47:00  |   -150  |   550 ";
                 expected = expected.Replace("\n", string.Empty).Replace("\r", string.Empty).Replace(" ", string.Empty);
                 var cleanOutput = consoleOutput.GetOuput().Replace("\n", string.Empty).Replace("\r", string.Empty).Replace(" ", string.Empty);
 
