@@ -1,26 +1,27 @@
-﻿using Microsoft.VisualStudio.TestPlatform.Utilities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace CareerPassportDemoTests
+﻿namespace CareerPassportDemoTests
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass()]
     public class PrinterServiceTests
     {
-        private PrinterService _helloWorld;
+        private readonly PrinterService _printer;
 
         public PrinterServiceTests()
         {
-            _helloWorld = new ();
+            _printer = new();
         }
 
         [TestMethod()]
         public void PrintWordTest()
         {
+            //Arrange
             var currentConsoleOut = Console.Out;
 
+            //Act and Assert
             using (var consoleOutput = new ConsoleOutput())
             {
-                _helloWorld.Print("Hello, World!");
+                _printer.Print("Hello, World!");
 
                 Assert.AreEqual("Hello, World!\r\n", consoleOutput.GetOuput());
             }
